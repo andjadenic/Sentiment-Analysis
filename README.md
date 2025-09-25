@@ -4,7 +4,7 @@
 * Reviews are from IMDB, allowing no more than 30 reviews per movie.
 * The constructed dataset contains an even number of positive and negative reviews.
 
-**Review example 1**: "If you like original gut wrenching laughter you will like this movie. If you are young or old then you will love this movie, hell even my mom liked it.<br /><br />Great Camp!!!"
+**Review example 1**: "If you like original gut wrenching laughter you will like this movie. If you are young or old then you will love this movie, hell even my mom liked it. Great Camp!!!"
 
 **Sentiment example 1**: "positive"
 
