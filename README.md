@@ -4,14 +4,9 @@
 * Reviews are from IMDB, allowing no more than 30 reviews per movie.
 * The constructed dataset contains an even number of positive and negative reviews.
 
-Sentence example:
-Class example:
+Review example 1: "If you like original gut wrenching laughter you will like this movie. If you are young or old then you will love this movie, hell even my mom liked it.<br /><br />Great Camp!!!"
+Sentiment example 1: "positive"
 
-### Preprocessing
 
-IMDB review dataset is integrated into `torchtext` using the `torchdata` datapipe API. So, instead of manually downloading and preprocessing, create a datapipe that:
-* Downloads the dataset.
-* Extracts the files.
-* Parses each review and its label.
-* Outputs an iterable stream of (text, label) samples.
-
+Review example 2: "Encouraged by the positive comments about this film on here I was looking forward to watching this film. Bad mistake..."
+Sentiment example 2: "negative"
