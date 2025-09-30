@@ -22,8 +22,9 @@ Each review word is embedded using a pre-trained word2vec model that maps 3 mill
 
 Recourses:
 * [Mikolov, Tomas, et al. "Efficient estimation of word representations in vector space. (2013)"](https://arxiv.org/abs/1301.3781)
-* [Gensim pre-trained models](https://radimrehurek.com/gensim/auto_examples/howtos/run_downloader_api.html)
 * [Rehurek, R., & Sojka, P. "Gensim–python framework for vector space modelling. (2011)](https://radimrehurek.com/gensim/intro.html)
+* [Gensim pre-trained models](https://radimrehurek.com/gensim/auto_examples/howtos/run_downloader_api.html)
+
 
 
 
