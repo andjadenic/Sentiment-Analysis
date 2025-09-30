@@ -9,8 +9,7 @@
 **Sentiment example 1**: "positive"
 
 
-**Review example 2**: "Encouraged by the positive comments about this film on here I was looking forward to watching this film. Bad mistake..."
-
+> **Review example 2**: "Encouraged by the positive comments about this film on here I was looking forward to watching this film. Bad mistake..."
 **Sentiment example 2**: "negative"
 
 Basic Exploratory Data Analysis is done in Jupiter notebook [eda.ipynb]().
