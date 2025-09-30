@@ -13,8 +13,9 @@ Large movie review dataset, also called IMDB Review Dataset, is a dataset for bi
 **Sentiment example 2**: "negative"
 
 Basic Exploratory Data Analysis is done in Jupiter notebook [eda.ipynb]().
-Recources:
+Resources:
 * ["Large movie review dataset" Maas, Andrew, et al. (2011)](https://ai.stanford.edu/~amaas/data/sentiment/)
+* [Kaggle IMDB Dataset of 50K Movie Reviews](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
 
 ## Data preprocessing and word embedding
 Labels `negative` are coded to $0$, and labels `positive` are coded to $1$.
