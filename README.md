@@ -1,5 +1,5 @@
 # Dataset
-["Large movie review dataset" Maas, Andrew, et al. (2011)](https://ai.stanford.edu/~amaas/data/sentiment/), also called IMDB Review Dataset, is a dataset for binary sentiment classification containing 50,000 movie reviews labeled as `positive` or `negative`. This is a standard benchmark dataset for sentiment analysis. It’s widely used in NLP tasks.
+Large movie review dataset, also called IMDB Review Dataset, is a dataset for binary sentiment classification containing 50,000 movie reviews labeled as `positive` or `negative`. This is a standard benchmark dataset for sentiment analysis. It’s widely used in NLP tasks.
 
 * Length of review varies from 32 characters (min) to 13,704 characters (max) with a median length of 970 characters.  
 * Reviews are from IMDB, allowing no more than 30 reviews per movie.
@@ -13,6 +13,8 @@
 **Sentiment example 2**: "negative"
 
 Basic Exploratory Data Analysis is done in Jupiter notebook [eda.ipynb]().
+Recources:
+* ["Large movie review dataset" Maas, Andrew, et al. (2011)](https://ai.stanford.edu/~amaas/data/sentiment/)
 
 ## Data preprocessing and word embedding
 Labels `negative` are coded to $0$, and labels `positive` are coded to $1$.
