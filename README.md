@@ -18,10 +18,12 @@ Basic Exploratory Data Analysis is done in Jupiter notebook [eda.ipynb]().
 Labels `negative` are coded to $0$, and labels `positive` are coded to $1$.
 
 ### Word embedding
-Each review word is embedded using a pre-trained word2vec model ( [Mikolov, Tomas, et al. "Efficient estimation of word representations in vector space. (2013)"](https://arxiv.org/abs/1301.3781) )
+Each review word is embedded using a pre-trained word2vec model that maps 3 million words into 300-dimensional vectors. Model is pre-trained on a part of the Google News dataset (about 100 billion words) and downloaded using Gensim API in [word_embeddin.py]().
 
-Pre-trained vectors are trained on a part of the Google News dataset (about 100 billion words) and downloaded using Gensim API ( [Rehurek, R., & Sojka, P. "Gensim–python framework for vector space modelling. (2011)](https://radimrehurek.com/gensim/intro.html) ) in [word_embeddin.py]().
-* Pre-trained word2vec model maps 3 million words into 300-dimensional vectors.
+Recourses:
+* [Mikolov, Tomas, et al. "Efficient estimation of word representations in vector space. (2013)"](https://arxiv.org/abs/1301.3781)
+* [Gensim pre-trained models](https://radimrehurek.com/gensim/auto_examples/howtos/run_downloader_api.html)
+* [Rehurek, R., & Sojka, P. "Gensim–python framework for vector space modelling. (2011)](https://radimrehurek.com/gensim/intro.html)
 
 
 
