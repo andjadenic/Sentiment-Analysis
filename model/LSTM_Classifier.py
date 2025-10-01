@@ -15,6 +15,7 @@ class LSTM_Classifier(nn.Module):
         self.linear = nn.Linear(in_features=hidden_size,
                                 out_features=1,
                                 bias=True)
+        print('LSTM Classifier model is successfully built.')
 
 
     def forward(self, batch_texts, batch_len):

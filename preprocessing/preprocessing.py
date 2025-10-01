@@ -19,11 +19,11 @@ def clean_text(text):
     text = re.sub(r"\s+", " ", text).strip().lower()
     return text
 
-def tokenize(text):
+def tokenize_text(text):
     # keep contractions like don't, i'm, it's
     return re.findall(r"[A-Za-z0-9']+", text)
 
-def encode(tokenized_review, token2id, unk_id=unk_id):
+def encode_text(tokenized_review, token2id, unk_id=unk_id):
     return [token2id.get(t, unk_id) for t in tokenized_review]
 
 def reload_built_vocab(json_vocab_path):
@@ -33,6 +33,53 @@ def reload_built_vocab(json_vocab_path):
     token2id = {tok: i for i, tok in enumerate(id2token)}
     return id2token, token2id
 
+
+def preprocess_data(csv_data_path, json_vocab_path):
+    '''
+    - Load the dataset from CSV file
+    - Clean and tokenize the data
+    - Reload built vocab
+    - Encode reviews and sentimentd
+    '''
+    # Load the dataset
+    df = pd.read_csv(csv_data_path)
+
+    # Clean and tokenize the data
+    token_counter = Counter()
+    tokenized_reviews = []  # list of tokenized reviews
+    labels = []  # list of labels (coded sentiments)
+
+    for id, row in df.iterrows():
+        text = clean_text(row['review'])
+        tokens = tokenize_text(text)
+
+        tokens = tokens[:max_seq_len]  # truncate reviews
+        tokenized_reviews.append(tokens)
+        token_counter.update(tokens)
+
+        label = 1 if row['sentiment'] == 'positive' else 0
+        labels.append(label)
+
+    # Reload built vocab
+    id2token, token2id = reload_built_vocab(json_vocab_path)
+
+    # Encode text
+    encoded_texts = [encode_text(tokenized_review, token2id) for tokenized_review in tokenized_reviews]
+    print('Data is successfully preprocessed.')
+    return encoded_texts, labels
+
+
+def split_data(encoded_texts, labels, train_percentage, val_percentage):
+    N = len(encoded_texts)
+
+    N_train = int(N * train_percentage)
+    N_val = int(N * val_percentage)
+
+    train_texts, train_labels = encoded_texts[:N_train], labels[:N_train]
+    val_texts, val_labels = encoded_texts[N_train:(N_train + N_val)], labels[N_train:(N_train + N_val)]
+    test_texts, test_labels = encoded_texts[(N_train + N_val):], labels[(N_train + N_val):]
+    print('Dataset is successfully split into train, validate and test subsets.')
+    return train_texts, train_labels, val_texts, val_labels, test_texts, test_labels
 
 class TextDataset(Dataset):
     def __init__(self, texts, labels=None):
@@ -54,31 +101,14 @@ def collate_fn(batch):
     lengths = torch.tensor([len(x) for x in texts], dtype=torch.long)
     tensors = [torch.tensor(x, dtype=torch.long) for x in texts]
     padded = pad_sequence(tensors, batch_first=True, padding_value=pad_id)
-
     labels_tensor = torch.tensor(labs, dtype=torch.long)
     return padded, labels_tensor, lengths
 
 
 
 if __name__ == "__main__":
-    # Load the dataset
-    df = try_read_csv(csv_path)
-    
-    # Clean and tokenize the train data (single pass)
-    token_counter = Counter()
-    tokenized_reviews = []  # list of tokenized reviews
-    labels = []  # list of labels (coded sentiments)
-    
-    for id, row in df.iterrows():
-        text = clean_text(row['review'])
-        tokens = tokenize(text)
-
-        tokens = tokens[:max_seq_len]  # truncate reviews
-        tokenized_reviews.append(tokens)
-        token_counter.update(tokens)
-
-        label = 1 if row['sentiment'] == 'positive' else 0
-        labels.append(label)
+    # Preprocess data
+    encoded_texts, labels = preprocess_data(csv_data_path, json_vocab_path)
 
 
     # Build vocab (run one time)

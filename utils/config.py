@@ -1,6 +1,7 @@
-# Dataset
+# Paths
 csv_data_path = r'D:\Faks\MASTER\PyTorch\Sentiment Analysis\SentimentAnalysis\data\IMDB Dataset.csv'
 json_vocab_path = r'D:\Faks\MASTER\PyTorch\Sentiment Analysis\SentimentAnalysis\preprocessing\vocab.json'
+trained_model_path = r'D:\Faks\MASTER\PyTorch\Sentiment Analysis\SentimentAnalysis\model'
 
 # Review preprocessing
 max_seq_len = 1000  # truncate very long reviews
