@@ -26,6 +26,38 @@ def tokenize_text(text):
 def encode_text(tokenized_review, token2id, unk_id=unk_id):
     return [token2id.get(t, unk_id) for t in tokenized_review]
 
+
+def build_vocab():
+    # Load the dataset
+    df = pd.read_csv(csv_data_path)
+
+    # Clean and tokenize the data
+    token_counter = Counter()
+    tokenized_reviews = []  # list of tokenized reviews
+    labels = []  # list of labels (coded sentiments)
+
+    for id, row in df.iterrows():
+        text = clean_text(row['review'])
+        tokens = tokenize_text(text)
+
+        tokens = tokens[:max_seq_len]  # truncate reviews
+        tokenized_reviews.append(tokens)
+        token_counter.update(tokens)
+
+        label = 1 if row['sentiment'] == 'positive' else 0
+        labels.append(label)
+
+    most_common = [tok for tok, freq in token_counter.most_common() if freq >= min_freq]
+    tokens_list = [pad_token, unk_token] + most_common
+    token2id = {tok: i for i, tok in enumerate(tokens_list)}  # token -> index
+
+    # Save vocab (run one time)
+    with open(json_vocab_path, "w", encoding="utf8") as f:
+        json.dump({"tokens_list": tokens_list}, f, ensure_ascii=False)
+
+    print(f'Vocabulary with {len(tokens_list)} words is successfully built and saved.')
+    return tokens_list, token2id
+
 def reload_built_vocab(json_vocab_path):
     with open(json_vocab_path, 'r', encoding='utf8') as f:
         vocab = json.load(f)
@@ -66,7 +98,7 @@ def preprocess_data(csv_data_path, json_vocab_path):
     # Encode text
     encoded_texts = [encode_text(tokenized_review, token2id) for tokenized_review in tokenized_reviews]
     print('Data is successfully preprocessed.')
-    return encoded_texts, labels
+    return token2id, encoded_texts, labels
 
 
 def split_data(encoded_texts, labels, train_percentage, val_percentage):
@@ -107,18 +139,7 @@ def collate_fn(batch):
 
 
 if __name__ == "__main__":
-    # Preprocess data
-    encoded_texts, labels = preprocess_data(csv_data_path, json_vocab_path)
-
-
-    # Build vocab (run one time)
-    '''most_common = [tok for tok, freq in token_counter.most_common() if freq >= min_freq]
-    tokens_list = [pad_token, unk_token] + most_common
-    token2id = {tok: i for i, tok in enumerate(tokens_list)}  # token -> index
-    
-    vocab_size = len(tokens_list)
-    print("Vocab size:", vocab_size)'''
-
-    # Save vocab (run one time)
-    '''with open("preprocessing/vocab.json", "w", encoding="utf8") as f:
-        json.dump({"tokens_list": tokens_list}, f, ensure_ascii=False)'''
+    # Build and save vocab (run one time)
+    '''
+    word2id, id2word = build_vocab()
+    '''

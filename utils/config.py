@@ -1,13 +1,13 @@
 # Paths
 csv_data_path = r'D:\Faks\MASTER\PyTorch\Sentiment Analysis\SentimentAnalysis\data\IMDB Dataset.csv'
 json_vocab_path = r'D:\Faks\MASTER\PyTorch\Sentiment Analysis\SentimentAnalysis\preprocessing\vocab.json'
-trained_model_path = r'D:\Faks\MASTER\PyTorch\Sentiment Analysis\SentimentAnalysis\model'
+trained_model_path = r'D:\Faks\MASTER\PyTorch\Sentiment Analysis\SentimentAnalysis\model\model.pth'
 
 # Review preprocessing
 max_seq_len = 1000  # truncate very long reviews
 min_freq = 2
-pad_token = '<PAD>'
-unk_token = "<UNK>"
+pad_token = '<pad>'
+unk_token = '<unk>'
 pad_id = 0
 unk_id = 1
 
