@@ -61,7 +61,10 @@ Training works by feeding mini-batches of tokenized, padded, and embedded review
 
 Model trains for a maximum number of epochs. **Early stopping** is used to prevent overfitting.
 
-Method `train_model`, defined in [Experiments/training.py](), trains the model, saves the best model, and returns tracked information about training (time, train/validation losses, and accuracies in each epoch).
+Method `train_model`, defined in [Experiments/training.py]():
+* trains the model
+* saves the best model
+* returns tracked information about training (time, train/validation losses, and accuracies in each epoch).
 
 
 
