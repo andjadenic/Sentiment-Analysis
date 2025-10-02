@@ -54,7 +54,7 @@ Resources:
 The loss function is the sum of **binary cross-entropy loss** between true labels $y_n$ and the model's predictions $p_n$ across the whole training dataset of size $N$:
 
 $$
-L = \sum_{n=1}^{N} y_n \cdot \log(p_n) + (1 - y_n) \cdot \log (1 - p_n)
+L = \sum_{n=1}^{N} \left( y_n \cdot \log(p_n) + (1 - y_n) \cdot \log (1 - p_n) \right)
 $$
 
 Training works by feeding mini-batches of tokenized, padded, and embedded reviews into the model that produces probabilities of positive sentiment. The model parameters are updated in every batch via backpropagation using **Adam optimizer**.
