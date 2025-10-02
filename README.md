@@ -1,7 +1,10 @@
 # Project description
-The goal of this project is to enable a machine to **automatically classify a movie** review as either "positive" or "negative" based on a given dataset of review-sentiment pairs. Project uses a **supervised machine learning** paradigm.
+The goal of this project is to enable a machine to **automatically classify a movie** review as either "positive" or "negative" based on a given dataset of review-sentiment pairs. The project uses a **supervised machine learning** paradigm.
+
 > **Input example**: "I liked the plot of the movie."
 > **Output example**: "positive"
+
+![Example](<img width="710" height="494" alt="readme_figure" src="https://github.com/user-attachments/assets/44baf6bf-a52f-4236-8b73-b8957c017fab" />)
 
 ## Dataset
 "Large movie review dataset", also called "IMDB Review Dataset", is a dataset for binary sentiment classification containing 50,000 movie reviews labeled as `positive` or `negative`. This is a standard benchmark dataset for sentiment analysis. It’s widely used in NLP tasks.
