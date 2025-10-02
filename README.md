@@ -48,6 +48,16 @@ The model is a multilayer LSTM with an additional fully connected linear layer a
 Resources:
 * [Sak, Haşim, Andrew Senior, and Françoise Beaufays. "Long short-term memory based recurrent neural network architectures for large vocabulary speech recognition." (2014).](https://arxiv.org/abs/1402.1128)
 
+## Training the Model
+Training works by feeding batches of tokenized, padded, and embedded reviews into the model, one word at a time. The embeddings pass through the LSTM, then a linear layer, and finally a sigmoid to produce probabilities of positive sentiment. These predictions are compared with true labels using **binary cross-entropy loss**. The Adam optimizer updates model weights via backpropagation. This process repeats for several epochs until the model learns to classify reviews accurately.
+
+$$
+L = \sum_{n=1}^{N} y^{(n)} * \log(p^{(n)}) + (1 - y^{(n)}) * \log (1 - p^{(n)})
+$$
+
+where $N$ is size of training dataset, $y^{(n)}$ is label of $n$-th sample and $p^{(n)}$ is model's prediction for $n$-th sample.
+
+
 
 
 
