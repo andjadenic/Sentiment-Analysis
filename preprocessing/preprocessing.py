@@ -4,8 +4,9 @@ import json
 from collections import Counter
 import pandas as pd
 import torch
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset
 from torch.nn.utils.rnn import pad_sequence
+import gensim.downloader as api
 
 
 def clean_text(text):
@@ -137,9 +138,20 @@ def collate_fn(batch):
     return padded, labels_tensor, lengths
 
 
+def make_embedding_matrix(word2id):
+    # Load pre-trained word2vec model
+    word2vec = api.load('word2vec-google-news-300')
 
-if __name__ == "__main__":
-    # Build and save vocab (run one time)
-    '''
-    word2id, id2word = build_vocab()
-    '''
+    embedding_dim = word2vec.vector_size
+    vocab_size = len(word2id)
+
+    embedding_matrix = torch.zeros(vocab_size, embedding_dim, dtype=torch.float32)
+    no_embedding = 0
+    for word, id in word2id.items():
+        if word in word2vec:
+            embedding_matrix[id] = torch.tensor(word2vec[word])
+        else:  # leave as zero
+            no_embedding += 1
+    print(f'{no_embedding} words don\'t have embedding')
+    print('Embedding matrix is successfully built.')
+    return embedding_matrix

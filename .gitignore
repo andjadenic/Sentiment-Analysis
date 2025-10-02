@@ -1,2 +1,3 @@
 data/
-model/model.pth
+model/training_model.pth
+model/best_model.pth

@@ -1,28 +1,14 @@
-import torch
+import torch.nn.functional
+
+from SentimentAnalysis.preprocessing.preprocessing import *
 import torch.nn as nn
 from torch.nn.utils.rnn import pack_padded_sequence
-import gensim.downloader as api
 from SentimentAnalysis.utils.config import *
 
 
 class LSTM_Classifier(nn.Module):
-    def __init__(self, word2id):
+    def __init__(self, embedding_matrix, hidden_size):
         super(LSTM_Classifier, self).__init__()
-
-        # Load pre-trained word2vec model
-        word2vec = api.load('word2vec-google-news-300')
-
-        self.embedding_dim = word2vec.vector_size
-        self.vocab_size = len(word2id)
-
-        embedding_matrix = torch.zeros(self.vocab_size, self.embedding_dim, dtype=torch.float32)
-        no_embedding = 0
-        for word, id in word2id.items():
-            if word in word2vec:
-                embedding_matrix[id] = torch.tensor(word2vec[word])
-            else:  # leave as zero
-                no_embedding += 1
-        print(f'{no_embedding} words don\'t have embedding')
 
         # Create embedding layer initialized with pretrained weights
         self.embedding_layer = nn.Embedding.from_pretrained(
@@ -59,5 +45,5 @@ class LSTM_Classifier(nn.Module):
         lstm_out = h[-1]  # (Nb, hidden_size)
 
         out_logits = self.linear(lstm_out)  # (Nb, 1)
-        out_probs = nn.functional.sigmoid(out_logits)  # (Nb, 1)
+        out_probs = torch.nn.functional.sigmoid(out_logits) # (Nb, 1)
         return out_probs.squeeze(1)  # (Nb, )
