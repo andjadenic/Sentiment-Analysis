@@ -14,13 +14,18 @@ The goal of this project is to enable a machine to **automatically classify a mo
 **Sentiment example 1**: "positive"
 
 
-> **Review example 2**: "Encouraged by the positive comments about this film on here I was looking forward to watching this film. Bad mistake..."
+> **Review example 2**: "Encouraged by the positive comments about this film on here, I was looking forward to watching this film. Bad mistake..."
 **Sentiment example 2**: "negative"
 
 Basic Exploratory Data Analysis is done in Jupiter notebook [eda.ipynb]().
 Resources:
 * ["Large movie review dataset" Maas, Andrew, et al. (2011)](https://ai.stanford.edu/~amaas/data/sentiment/)
 * [Kaggle IMDB Dataset of 50K Movie Reviews](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
+
+The dataset is split into three subsets:
+* **Train dataset** (25,000 pairs) is used for training multiple models.
+* **Validation dataset** (15,000 pairs) is used for finding the best model among the trained models.
+* **Test dataset** (10,000 pairs) is used for testing the best model.
 
 ### Data preprocessing and word embedding
 Labels `negative` are coded to $0$, and labels `positive` are coded to $1$.
@@ -65,6 +70,9 @@ Method `train_model`, defined in [Experiments/training.py]():
 * trains the model
 * saves the best model
 * returns tracked information about training (time, train/validation losses, and accuracies in each epoch).
+
+  
+## Hyperparameter tuning
 
 
 
