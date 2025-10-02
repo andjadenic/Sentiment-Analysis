@@ -74,6 +74,16 @@ Method `train_model`, defined in [Experiments/training.py]():
   
 ## Hyperparameter tuning
 
+## Evaluation
+The trained model achieved the following results:
+* Train Loss: , Train Accuracy:
+* Validation Loss: , Validation Accuracy:
+* **Test Loss:** , **Test Accuracy:**
+
+Method `evaluate_model` that evaluates the trained model is defined in [Experiments/evaluation.py]().
+
+
+
 
 
 
