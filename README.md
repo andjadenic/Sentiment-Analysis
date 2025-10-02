@@ -52,6 +52,7 @@ Resources:
 
 ## Training the Model
 The loss function is the sum of **binary cross-entropy loss** between true labels $y_n$ and the model's predictions $p_n$ across the whole training dataset of size $N$:
+
 $$
 L = \sum_{n=1}^{N} y_n \cdot \log(p_n) + (1 - y_n) \cdot \log (1 - p_n)
 $$
