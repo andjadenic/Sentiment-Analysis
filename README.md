@@ -26,7 +26,9 @@ Resources:
 Labels `negative` are coded to $0$, and labels `positive` are coded to $1$.
 
 ### Word embedding
-Each review word is embedded using a pre-trained word2vec model that maps 3 million words into 300-dimensional vectors. The model is pre-trained on a portion of the Google News dataset (approximately 100 billion words) and downloaded using the Gensim API in [word_embeddin.py]().
+Each review word is embedded using a pre-trained word2vec model that maps 3 million words into 300-dimensional vectors. The model is pre-trained on a portion of the Google News dataset (approximately 100 billion words).
+
+Function `make_embedding_matrix`, defined in [preprocessing/preprocessing.py](), downloads pre-trained model using the Gensim API and returns word -> embedding matrix.  
 
 Recourses:
 * [Mikolov, Tomas, et al. "Efficient estimation of word representations in vector space. (2013)"](https://arxiv.org/abs/1301.3781)
