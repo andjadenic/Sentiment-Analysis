@@ -1,5 +1,5 @@
 # Project description
-The goal of this project is to enable a machine to **automatically classify a movie** review as either "positive" or "negative" based on a given dataset of review-sentiment pairs. The project uses a **supervised machine learning** paradigm.
+The goal of this project is to enable a machine to **automatically classify a movie review** as either "positive" or "negative" based on a given dataset of review-sentiment pairs. The project uses a **supervised machine learning** paradigm.
 
 <img src="https://github.com/andjadenic/Sentiment-Analysis/blob/main/readme_figure.png" alt="Alt text" width="30%">
 
@@ -37,7 +37,12 @@ After preprocessing and embedding, reviews are padded and, with corresponding la
 
 ## Model architecture
 
-The model is a multilayer LSTM with an additional fully connected linear layer and sigmoid activation function that produces a prediction. 
+The model is a multilayer LSTM with an additional fully connected linear layer and sigmoid activation function that produces a prediction.
+
+Given a review as input into the LSTM
+
+Resources:
+* [Sak, Haşim, Andrew Senior, and Françoise Beaufays. "Long short-term memory based recurrent neural network architectures for large vocabulary speech recognition." (2014).](https://arxiv.org/abs/1402.1128)
 
 
 
