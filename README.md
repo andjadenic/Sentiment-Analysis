@@ -50,7 +50,7 @@ The model is a multilayer LSTM with an additional fully connected linear layer a
 2. **Fully connected (linear) layer**: Takes the final hidden state of the LSTM and maps it to a single value.
 3. **Sigmoid activation**: Squashes that value into a probability between 0 and 1.
 
-<img src="https://github.com/andjadenic/Sentiment-Analysis/blob/main/readme_figure_model_architecture.png" alt="Alt text" width="70%">
+<img src="https://github.com/andjadenic/Sentiment-Analysis/blob/main/readme_figure_model_architecture.png" alt="Alt text" width="60%">
 
 Resources:
 * [Sak, Haşim, Andrew Senior, and Françoise Beaufays. "Long short-term memory based recurrent neural network architectures for large vocabulary speech recognition." (2014).](https://arxiv.org/abs/1402.1128)
