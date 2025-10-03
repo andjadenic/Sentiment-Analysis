@@ -10,10 +10,11 @@ def evaluate_model(test_ds, embedding_matrix, path, hidden_size, Nb):
 
     # Define test DataLoader
     test_loader = DataLoader(test_ds, batch_size=Nb, shuffle=False,
+                             num_workers=num_workers, pin_memory=True,
                              collate_fn=collate_fn)
 
     # Load trained model
-    model = LSTM_Classifier(embedding_matrix, hidden_size)
+    model = LSTM_Classifier(embedding_matrix, hidden_size).to(device)
     model.load_state_dict(torch.load(path))
 
     # Define loss
@@ -34,6 +35,10 @@ def evaluate_model(test_ds, embedding_matrix, path, hidden_size, Nb):
     epoch_test_loss, epoch_test_correct, test_total = 0.0, 0, 0
     with torch.no_grad():
         for padded, labels_tensor, lengths in test_loader:
+            # Move batch to device
+            padded = padded.to(device, non_blocking=True)
+            labels_tensor = labels_tensor.to(device, non_blocking=True)
+
             batch_size = padded.shape[0]
 
             outputs = model(padded, lengths)  # (Nb,)

@@ -11,12 +11,14 @@ import json
 def train_model(embedding_matrix, train_ds, val_ds, hidden_size, Nb, lr, training_model_path):
     # Define train and validation DataLoaders with given batch size Nb
     train_loader = DataLoader(train_ds, batch_size=Nb, shuffle=True,
+                              num_workers=num_workers, pin_memory=True,
                               collate_fn=collate_fn)
     val_loader = DataLoader(val_ds, batch_size=Nb, shuffle=False,
+                            num_workers=num_workers, pin_memory=True,
                             collate_fn=collate_fn)
 
     # Define Model with given hidden_size
-    model = LSTM_Classifier(embedding_matrix, hidden_size)
+    model = LSTM_Classifier(embedding_matrix, hidden_size).to(device)
 
     # Define loss and optimizer with given learning rate lr
     criterion = nn.BCELoss()
@@ -47,7 +49,11 @@ def train_model(embedding_matrix, train_ds, val_ds, hidden_size, Nb, lr, trainin
         epoch_train_loss, epoch_train_correct, train_total = 0.0, 0, 0
 
         for padded, labels_tensor, lengths in train_loader:
-            batch_size = padded.shape[0]
+            # Move batch to device
+            padded = padded.to(device, non_blocking=True)
+            labels_tensor = labels_tensor.to(device, non_blocking=True)
+
+            batch_size = padded.shape[0]  # current batch size
             optimizer.zero_grad()
 
             # Forward
@@ -76,6 +82,9 @@ def train_model(embedding_matrix, train_ds, val_ds, hidden_size, Nb, lr, trainin
         epoch_val_loss, epoch_val_correct, val_total = 0.0, 0, 0
         with torch.no_grad():
             for padded, labels_tensor, lengths in val_loader:
+                padded = padded.to(device, non_blocking=True)
+                labels_tensor = labels_tensor.to(device, non_blocking=True)
+
                 batch_size = padded.shape[0]
 
                 outputs = model(padded, lengths)  # (Nb,)

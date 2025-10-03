@@ -26,7 +26,7 @@ dropout = 0.0  # 0.3, hyperparameter
 # Training
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 batch_size = 64  # tuned hyperparameter
-#num_workers = 4
+num_workers = 4
 N_epochs = 5  # hyperparameter
 lr = 1e-3    # tuned hyperparameter
 patience = 1000    # hyperparameter
