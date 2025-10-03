@@ -1,7 +1,7 @@
 # Project description
 The goal of this project is to enable a machine to **automatically classify a movie review** as either "positive" or "negative" based on a given dataset of review-sentiment pairs. The project uses a **supervised machine learning** paradigm.
 
-<img src="https://github.com/andjadenic/Sentiment-Analysis/blob/main/readme_figure.png" alt="Alt text" width="30%">
+<img src="https://github.com/andjadenic/Sentiment-Analysis/blob/main/readme_figure.png" alt="Alt text" width="50%">
 
 ## Dataset
 "Large movie review dataset", also called "IMDB Review Dataset", is a dataset for binary sentiment classification containing 50,000 movie reviews labeled as `positive` or `negative`. This is a standard benchmark dataset for sentiment analysis. It’s widely used in NLP tasks.
@@ -50,7 +50,7 @@ The model is a multilayer LSTM with an additional fully connected linear layer a
 2. **Fully connected (linear) layer**: Takes the final hidden state of the LSTM and maps it to a single value.
 3. **Sigmoid activation**: Squashes that value into a probability between 0 and 1.
 
-<img src="https://github.com/andjadenic/Sentiment-Analysis/blob/main/readme_figure_model_architecture.png" alt="Alt text" width="50%">
+<img src="https://github.com/andjadenic/Sentiment-Analysis/blob/main/readme_figure_model_architecture.png" alt="Alt text" width="70%">
 
 Resources:
 * [Sak, Haşim, Andrew Senior, and Françoise Beaufays. "Long short-term memory based recurrent neural network architectures for large vocabulary speech recognition." (2014).](https://arxiv.org/abs/1402.1128)
@@ -84,6 +84,19 @@ The trained model achieved the following results:
 * **Test Loss:** , **Test Accuracy:**
 
 Method `evaluate_model` that evaluates the trained model is defined in [Experiments/evaluation.py]().
+
+## GPU Acceleration in PyTorch
+GPUs dramatically speed up training times in deep learning, and PyTorch provides a seamless way to utilize GPUs through its `torch.cuda` module.
+
+This project utilizes a GPU for training models, evaluation, and inference.
+
+**DOPUNI**
+
+## Requirements DOPUNI
+- torch 2.2.0
+- numpy 1.26.0
+- matplotlib 3.8.0
+- scikit-learn 1.4.0
 
 
 
