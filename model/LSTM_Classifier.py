@@ -1,9 +1,9 @@
 import torch.nn.functional
 
-from SentimentAnalysis.preprocessing.preprocessing import *
+from preprocessing.preprocessing import *
 import torch.nn as nn
 from torch.nn.utils.rnn import pack_padded_sequence
-from SentimentAnalysis.utils.config import *
+from utils.config import *
 
 
 class LSTM_Classifier(nn.Module):

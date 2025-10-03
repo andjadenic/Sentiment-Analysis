@@ -1,4 +1,4 @@
-from SentimentAnalysis.utils.config import *
+from utils.config import *
 import re
 import json
 from collections import Counter
@@ -52,7 +52,7 @@ def build_vocab():
     tokens_list = [pad_token, unk_token] + most_common
     token2id = {tok: i for i, tok in enumerate(tokens_list)}  # token -> index
 
-    # Save vocab (run one time)
+    # Save vocab
     with open(json_vocab_path, "w", encoding="utf8") as f:
         json.dump({"tokens_list": tokens_list}, f, ensure_ascii=False)
 

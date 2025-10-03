@@ -1,9 +1,9 @@
 import torch.optim as optim
-from SentimentAnalysis.model.LSTM_Classifier import *
-from SentimentAnalysis.preprocessing.preprocessing import *
+from model.LSTM_Classifier import *
+from preprocessing.preprocessing import *
 from torch.utils.data import DataLoader
 import time
-from SentimentAnalysis.Experiments.evaluation import *
+from experiments.evaluation import *
 from itertools import product
 import json
 
@@ -102,7 +102,7 @@ def train_model(embedding_matrix, train_ds, val_ds, hidden_size, Nb, lr, trainin
 
         print(f"Epoch {epoch + 1}/{N_epochs} | "
               f"Train Loss: {epoch_avg_train_loss:.4f}, Train Acc: {epoch_train_acc:.4f} | "
-              f"Val Loss: {epoch_avg_val_loss:.4f}, Val Acc: {epoch_val_acc:.4f}", "\n")
+              f"Val Loss: {epoch_avg_val_loss:.4f}, Val Acc: {epoch_val_acc:.4f}")
 
         # ---- Early Stopping ----
         if epoch_avg_val_loss < best_val_loss:
@@ -145,6 +145,9 @@ def grid_search(param_grid, embedding_matrix, train_ds, val_ds):
 
 
 if __name__ == '__main__':
+    # Build a vocab (run once)
+    '''tokens_list, token2id = build_vocab()'''
+
     # Preprocess data
     word2id, encoded_texts, labels = preprocess_data(csv_data_path, json_vocab_path)
 
@@ -154,22 +157,25 @@ if __name__ == '__main__':
     # Split the dataset into train, validation and test datasets
     train_texts, train_labels, val_texts, val_labels, test_texts, test_labels = split_data(encoded_texts, labels,
                                                                                            .5, .3)
+
     # Make Datasets
     train_ds, val_ds = TextDataset(train_texts, train_labels), TextDataset(val_texts, val_labels)
 
-    # Train the model
+    # Train a single model
     '''info = train_model(embedding_matrix, train_ds, val_ds,
                        hidden_size, batch_size, lr,
                        training_model_path)'''
 
-    # Tune hyperparameters
-    '''grid_search(param_grid, embedding_matrix, train_ds, val_ds)
+    # Tune hyperparameters and save the best in best_model_path
+    grid_search(param_grid, embedding_matrix, train_ds, val_ds)
     with open(all_models_info_path, "r", encoding="utf-8") as f:
         loaded_data = json.load(f)
-    print(loaded_data)'''
+    print(loaded_data)
 
     # Evaluate the model that best performed on validation dataset
     # batch_size, hidden_sizeare set in config
     # model parameters are saved in best_model_path
     test_ds = TextDataset(test_texts, test_labels)
     eval_info = evaluate_model(test_ds, embedding_matrix, best_model_path, hidden_size, batch_size)
+    print('\n')
+    print(eval_info)
