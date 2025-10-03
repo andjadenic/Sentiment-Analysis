@@ -91,10 +91,9 @@ GPUs significantly accelerate training times in deep learning, and PyTorch offer
 This project **utilizes a GPU** for training models and evaluation, by sending the model and each batch during the training and evaluation to `cuda`, if available.
 
 ## Requirements
-- torch 2.2.0
-- numpy 1.26.0
-- matplotlib 3.8.0
-- scikit-learn 1.4.0
+- torch
+- pandas
+- gensim
 **DOPUNI**
 
 
