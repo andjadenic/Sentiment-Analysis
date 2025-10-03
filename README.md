@@ -86,18 +86,16 @@ The trained model achieved the following results:
 Method `evaluate_model` that evaluates the trained model is defined in [Experiments/evaluation.py]().
 
 ## GPU Acceleration in PyTorch
-GPUs dramatically speed up training times in deep learning, and PyTorch provides a seamless way to utilize GPUs through its `torch.cuda` module.
+GPUs significantly accelerate training times in deep learning, and PyTorch offers a seamless way to utilize GPUs through its `torch.cuda` module.
 
-This project utilizes a GPU for training models, evaluation, and inference.
+This project **utilizes a GPU** for training models and evaluation, by sending the model and each batch during the training and evaluation to `cuda`, if available.
 
-**DOPUNI**
-
-## Requirements DOPUNI
+## Requirements
 - torch 2.2.0
 - numpy 1.26.0
 - matplotlib 3.8.0
 - scikit-learn 1.4.0
-
+**DOPUNI**
 
 
 
