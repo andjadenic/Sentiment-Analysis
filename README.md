@@ -76,9 +76,9 @@ Method `train_model`, defined in [Experiments/training.py]():
 To find the best values for hidden size, batch size, and learning rate, we list all hyperparameter combinations in [utils/config.py]() and use the method `grid_search`, defined in [Experiments/training.py](), that loops over all combinations and stores results in [Experiments/models_info.json]().
 
 Experiments show the best values for hyperparameters are:
-* batch size = 
-* learning rate =
-* hidden size =
+* batch size = $64$
+* learning rate = $10^{-3}$
+* hidden size = $256$
 
 ## Experiments and Evaluation
 The model with tuned hyperparameters achieved the following results:
