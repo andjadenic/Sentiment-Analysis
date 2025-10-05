@@ -88,7 +88,9 @@ The model with tuned hyperparameters achieved the following results:
 
 Method `evaluate_model` that evaluates the trained model is defined in [Experiments/evaluation.py]().
 
-The loss and accuracy on the train and validation datasets in each epoch during the training are shown in the figure below.
+The loss and accuracy on the train and validation datasets in each epoch during the training are shown in the figures below.
+<img src="https://github.com/andjadenic/Sentiment-Analysis/blob/main/loss.png" alt="Alt text" width="100%">
+<img src="https://github.com/andjadenic/Sentiment-Analysis/blob/main/accuracy.png" alt="Alt text" width="100%">
 
 ## GPU Acceleration in PyTorch
 GPUs significantly accelerate training times in deep learning, and PyTorch offers a seamless way to utilize GPUs through its `torch.cuda` module.
