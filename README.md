@@ -73,17 +73,22 @@ Method `train_model`, defined in [Experiments/training.py]():
 
   
 ## Hyperparameter tuning
-To find the best values for hidden size, batch size, and learning rate, we list all hyperparameter combinations listed in [utils/config.py]().
+To find the best values for hidden size, batch size, and learning rate, we list all hyperparameter combinations in [utils/config.py]() and use the method `grid_search`, defined in [Experiments/training.py](), that loops over all combinations and stores results in [Experiments/models_info.json]().
 
-To find the best hyperparameter combination, we use the method `grid_search`, defined in [Experiments/training.py](), that loops over all combinations and stores results in [Experiments/models_info.json]().
+Experiments show the best values for hyperparameters are:
+* batch size = 
+* learning rate =
+* hidden size =
 
-## Evaluation
-The trained model achieved the following results:
+## Experiments and Evaluation
+The model with tuned hyperparameters achieved the following results:
 * Train Loss: , Train Accuracy:
 * Validation Loss: , Validation Accuracy:
 * **Test Loss:** , **Test Accuracy:**
 
 Method `evaluate_model` that evaluates the trained model is defined in [Experiments/evaluation.py]().
+
+The loss and accuracy on train and validation datasets in each epoch during the training are showed in the figure below.
 
 ## GPU Acceleration in PyTorch
 GPUs significantly accelerate training times in deep learning, and PyTorch offers a seamless way to utilize GPUs through its `torch.cuda` module.
@@ -95,8 +100,6 @@ This project **utilizes a GPU** for training models and evaluation, by sending t
 - `torch 2.8.0+cu126`
 - `gensim 4.3.3`
 - `pandas 2.3.3`
-
-
 
 
 
