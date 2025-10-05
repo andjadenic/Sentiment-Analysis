@@ -82,13 +82,13 @@ Experiments show the best values for hyperparameters are:
 
 ## Experiments and Evaluation
 The model with tuned hyperparameters achieved the following results:
-* Train Loss: , Train Accuracy:
-* Validation Loss: , Validation Accuracy:
-* **Test Loss:** , **Test Accuracy:**
+* Train Loss: 0.25, Train Accuracy: 89.81%
+* Validation Loss:  0.27, Validation Accuracy: 88.93%
+* **Test Loss: 0.27** , **Test Accuracy: 88.93%**
 
 Method `evaluate_model` that evaluates the trained model is defined in [Experiments/evaluation.py]().
 
-The loss and accuracy on train and validation datasets in each epoch during the training are showed in the figure below.
+The loss and accuracy on the train and validation datasets in each epoch during the training are shown in the figure below.
 
 ## GPU Acceleration in PyTorch
 GPUs significantly accelerate training times in deep learning, and PyTorch offers a seamless way to utilize GPUs through its `torch.cuda` module.
