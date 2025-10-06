@@ -1,4 +1,5 @@
-# Project description
+# Sentiment Analysis
+## Project description
 The goal of this project is to enable a machine to **automatically classify a movie review** as either "positive" or "negative" based on a given dataset of review-sentiment pairs. The project uses a **supervised machine learning** paradigm.
 
 <img src="https://github.com/andjadenic/Sentiment-Analysis/blob/main/readme_figure.png" alt="Alt text" width="50%">
