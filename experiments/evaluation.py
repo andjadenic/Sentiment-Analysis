@@ -25,8 +25,8 @@ def evaluate_model(test_ds, embedding_matrix, path, hidden_size, Nb):
     # Start timer
     start_time = time.time()
 
-    info = {'avg_test_loss': [],
-            'test_acc': [],
+    info = {'avg_test_loss': 0,
+            'avg_test_acc': 0,
             'time': 0}
 
     # ---- Evaluation ----
@@ -64,6 +64,6 @@ def evaluate_model(test_ds, embedding_matrix, path, hidden_size, Nb):
 
     # Save evaluation info of best model
     with open(best_model_eval_info_path, "w", encoding="utf8") as f:
-        json.dump(info, f, indent=4)
+        json.dump(info, f)
 
     return info

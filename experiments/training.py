@@ -8,6 +8,8 @@ from itertools import product
 import json
 
 
+
+
 def train_model(embedding_matrix, train_ds, val_ds, hidden_size, Nb, lr, training_model_path):
     # Define train and validation DataLoaders with given batch size Nb
     train_loader = DataLoader(train_ds, batch_size=Nb, shuffle=True,
@@ -19,6 +21,7 @@ def train_model(embedding_matrix, train_ds, val_ds, hidden_size, Nb, lr, trainin
 
     # Define Model with given hidden_size
     model = LSTM_Classifier(embedding_matrix, hidden_size).to(device)
+    print("model.device:", next(model.parameters()).device)
 
     # Define loss and optimizer with given learning rate lr
     criterion = nn.BCELoss()
@@ -34,7 +37,8 @@ def train_model(embedding_matrix, train_ds, val_ds, hidden_size, Nb, lr, trainin
             'epoch_train_acc': [],
             'epoch_avg_val_loss': [],
             'epoch_val_acc': [],
-            'time': 0}
+            'time': 0
+    }
 
     # Start timer
     start_time = time.time()
@@ -124,6 +128,7 @@ def train_model(embedding_matrix, train_ds, val_ds, hidden_size, Nb, lr, trainin
     end_time = time.time()
     training_time = end_time - start_time
     info['time'] = training_time
+
     print(f'Model training has been successfully completed in {training_time / 60:.2f} minutes.')
     print('\n')
     print('\n')
@@ -132,16 +137,17 @@ def train_model(embedding_matrix, train_ds, val_ds, hidden_size, Nb, lr, trainin
 
 
 def grid_search(param_grid, embedding_matrix, train_ds, val_ds):
-    info_list = []
     for hidden_size, batch_size, lr in product(*param_grid.values()):
         curr_info = train_model(embedding_matrix, train_ds, val_ds,
                                 hidden_size, batch_size, lr,
                                 training_model_path)
-        info_list.append(curr_info)
 
-    # Save info about trained models
-    with open(all_models_info_path, "w", encoding="utf-8") as f:
-        json.dump(info_list, f, indent=4)
+        # Save info about the model
+        with open(all_models_info_path, 'r') as file:
+            data = json.load(file)  # a list of dictionaries
+        data.append(curr_info)
+        with open(all_models_info_path, 'w') as file:
+            json.dump(data, file)
 
 
 if __name__ == '__main__':
@@ -162,15 +168,15 @@ if __name__ == '__main__':
     train_ds, val_ds = TextDataset(train_texts, train_labels), TextDataset(val_texts, val_labels)
 
     # Train a single model
-    '''info = train_model(embedding_matrix, train_ds, val_ds,
+    info = train_model(embedding_matrix, train_ds, val_ds,
                        hidden_size, batch_size, lr,
-                       training_model_path)'''
+                       best_model_path)
 
     # Tune hyperparameters and save the best in best_model_path
-    grid_search(param_grid, embedding_matrix, train_ds, val_ds)
+    '''grid_search(param_grid, embedding_matrix, train_ds, val_ds)
     with open(all_models_info_path, "r", encoding="utf-8") as f:
         loaded_data = json.load(f)
-    print(loaded_data)
+    print(loaded_data)'''
 
     # Evaluate the model that best performed on validation dataset
     # batch_size, hidden_sizeare set in config

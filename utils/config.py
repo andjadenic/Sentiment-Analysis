@@ -3,10 +3,12 @@ import torch
 # Paths
 csv_data_path = r'C:\Users\HP\Sentiment-Analysis\data\IMDB_Dataset.csv'
 json_vocab_path = r'C:\Users\HP\Sentiment-Analysis\preprocessing\vocab.json'
+
 training_model_path = r'C:\Users\HP\Sentiment-Analysis\model\training_model.pth'
-best_model_path = r'C:\Users\HP\Sentiment-Analysis\model\best_model.pth'
 all_models_info_path = r'C:\Users\HP\Sentiment-Analysis\experiments\models_info.json'
-best_model_eval_info_path = r'C:\Users\HP\Sentiment-Analysis\preprocessing\vocab.json'
+
+best_model_eval_info_path = r'C:\Users\HP\Sentiment-Analysis\experiments\best_model_eval_info.json'
+best_model_path = r'C:\Users\HP\Sentiment-Analysis\model\best_model.pth'
 
 # Review preprocessing
 max_seq_len = 750  # truncate very long reviews / hyperparameter
@@ -20,7 +22,7 @@ unk_id = 1
 embedding_dim = 300
 
 # LSTM
-hidden_size = 128  # tuned hyperparameter
+hidden_size = 256  # tuned hyperparameter
 num_layers = 2    # hyperparameter
 dropout = 0.3  # hyperparameter
 
