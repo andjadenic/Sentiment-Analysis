@@ -1,3 +1,9 @@
 data/IMDB_Dataset.csv
 model/training_model.pth
 model/best_model.pth
+.venv/
+experiments/best_model_eval_info.json
+experiments/models_info.json
+preprocessing/vocab.json
+.idea/
+model/__pycache__
